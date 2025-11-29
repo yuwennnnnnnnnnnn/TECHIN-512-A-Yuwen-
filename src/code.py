@@ -37,6 +37,68 @@ pixel_pin = board.A0
 num_pixels = 8
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.3, auto_write=False)
 
+# ==================== 新增：加速度计滤波器类 ====================
+# 插入位置：在初始化硬件之后，游戏状态定义之前
+
+class MovingAverageFilter:
+    """
+    移动平均滤波器 - 用于平滑加速度计数据
+    
+    原理：保存最近N个读数，返回它们的平均值
+    优点：可以有效减少噪声和抖动
+    
+    参数：
+        size: 滤波窗口大小（保存多少个历史数据）
+              size越大越平滑，但响应越慢
+              建议值：3-10
+    """
+    def __init__(self, size=5):
+        self.size = size
+        self.values_x = []  # X轴历史数据
+        self.values_y = []  # Y轴历史数据
+        self.values_z = []  # Z轴历史数据
+    
+    def filter(self, x, y, z):
+        """
+        对新的加速度数据进行滤波
+        
+        参数：
+            x, y, z: 加速度计原始读数
+        
+        返回：
+            滤波后的 (x, y, z) 数据
+        """
+        # 添加新数据到历史记录
+        self.values_x.append(x)
+        self.values_y.append(y)
+        self.values_z.append(z)
+        
+        # 如果历史数据超过窗口大小，删除最旧的数据
+        if len(self.values_x) > self.size:
+            self.values_x.pop(0)
+            self.values_y.pop(0)
+            self.values_z.pop(0)
+        
+        # 计算平均值
+        avg_x = sum(self.values_x) / len(self.values_x)
+        avg_y = sum(self.values_y) / len(self.values_y)
+        avg_z = sum(self.values_z) / len(self.values_z)
+        
+        return avg_x, avg_y, avg_z
+    
+    def reset(self):
+        """重置滤波器（清空历史数据）"""
+        self.values_x = []
+        self.values_y = []
+        self.values_z = []
+
+# 创建滤波器实例
+accel_filter = MovingAverageFilter(size=5)
+# size=5: 使用最近5个读数的平均值
+# 可以根据实际效果调整（3-10之间）
+
+# ==================== 游戏状态定义 ====================
+
 # Game states
 STATE_BOOT_ANIMATION = -1  # Boot animation state
 STATE_SPLASH = 0
@@ -426,6 +488,10 @@ def start_level():
     shake_start_time = None
     is_shaking = False
     
+    # ==================== 修改点1：重置滤波器 ====================
+    # 每次开始新关卡时重置滤波器，避免上一关的数据影响
+    accel_filter.reset()
+    
     # Set LED color hint based on action
     pixels.fill(OFF)
     if current_action == "ROTATE":
@@ -466,8 +532,17 @@ def check_action():
         return True
         
     elif current_action == "SHAKE":
+        # ==================== 修改点2：使用滤波器 ====================
+        # 1. 读取原始加速度数据
         x, y, z = accelerometer.acceleration
-        angle_x, angle_y = calculate_angles(x, y, z)
+        
+        # 2. 通过滤波器处理数据（关键改进！）
+        x_filtered, y_filtered, z_filtered = accel_filter.filter(x, y, z)
+        
+        # 3. 使用滤波后的数据计算角度
+        angle_x, angle_y = calculate_angles(x_filtered, y_filtered, z_filtered)
+        
+        # 4. 检测摇晃
         if check_shake(angle_x, angle_y, time.monotonic()):
             action_completed = True
             pixels.fill(PURPLE)
@@ -480,6 +555,7 @@ def check_action():
 # Play boot animation
 print("=== SQUID GAME: ACTION RUSH ===")
 print("Booting...")
+print("Accelerometer filter: Moving Average (window size=5)")  # 新增：显示滤波器信息
 play_boot_animation()
 
 # Display splash after animation
