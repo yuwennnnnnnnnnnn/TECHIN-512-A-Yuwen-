@@ -1,21 +1,19 @@
 # TECHIN-512-A-Yuwen-
-# Squid Game ⭕️ :
+# Squid Game ⭕️ 
 
-A 90s-style handheld electronic game inspired by Netflix's *Squid Game*, built with ESP32 and CircuitPython. Players must complete quick actions under time pressure across 10 increasingly difficult levels, with the iconic pink aesthetic and guard symbols from the show.
-
-![Squid Game Action Rush](./images/game_photo.jpg)
-*Note: Replace with actual photo of your device*
+The idea of this ia a 90s-style handheld electronic game inspired by Netflix's *Squid Game*, players must complete quick actions under time pressure across 10 increasingly difficult levels, with the iconic pink aesthetic and guard symbols from the show.
+<img src="https://github.com/user-attachments/assets/dd8bc7f9-0776-4c0d-b54c-cfc2ffb05001" width="500" alt="squid game">
 
 ---
 
 ## 🎮 Game Overview
 
-**Squid Game: Action Rush** is a reaction-based handheld game where players compete to survive 10 levels by completing random actions within strict time limits. Inspired by the deadly children's games in *Squid Game*, each level requires players to perform one of four physical actions:
+**Squid Game** is a reaction-based handheld game where players compete to survive 10 levels by completing random actions within strict time limits. Inspired by the deadly children's games in *Squid Game*, each level requires players to perform one of four physical actions:
 
-- **ROTATE** - Spin the rotary encoder
-- **BUTTON** - Press the button
-- **TAP** - Tap the device (accelerometer detection)
-- **SHAKE** - Shake the device (sustained motion detection)
+- **ROTATE** - Spin the ‘circle’ （rotary encoder）
+- **BUTTON** - Press the ‘star’ （rotary encoder）
+- **TAP** - Tap the 'triangle' (accelerometer detection)
+- **SHAKE** - Shake the 'square' (accelerometer detection)
 
 The game features:
 - 3 difficulty modes (Easy, Normal, Hard)
@@ -29,35 +27,18 @@ The game features:
 ## 💡 Ideation & Design Philosophy
 
 ### Squid Game Inspiration
-The Netflix series *Squid Game* perfectly embodies the concept of high-stakes, time-pressured challenges with simple rules. I was drawn to several key elements:
-
-1. **Life-or-Death Simplicity**: 
-   - The show's games are children's games made deadly by time pressure
-   - My game translates this to quick reflex actions with shrinking time windows
-
-2. **Visual Iconography**:
-   - **Pink Aesthetic**: The iconic pink/magenta lighting creates the unsettling atmosphere
-   - **Guard Symbols**: Triangle (○), Circle (○), Square (□) represent hierarchy
-   - **Player 456**: The protagonist's number appears in the boot sequence
-
-3. **Progression & Difficulty**:
-   - Like the show's escalating stakes, time limits decrease with each level
-   - Three difficulty modes represent player skill levels (contestants vs VIPs)
-
-4. **Elimination Mechanic**:
-   - Failure = "ELIMINATED" (not just "Game Over")
-   - Success = Prize money display (inspired by the ₩45.6 billion prize pool)
+I took inspiration from Squid Game because its simple but high pressure games match the fast reaction style I wanted. The show’s strong visual identity, like the pink lighting, the guard symbols, and the number 456, helped me set the atmosphere for my own game. I also followed its idea of rising difficulty, so the time limits get shorter and the three modes reflect different levels of players. Instead of a normal “Game Over,” I used “ELIMINATED” and added a prize money style reward screen, echoing the show’s tension and motivation.
 
 ### Why This Game Design?
-I chose a *Bop It*-style gameplay because:
-- **90s Nostalgia**: Matches the retro-futurism aesthetic of Squid Game's setting
-- **Physical Engagement**: Multiple input types (rotate, tap, shake) create variety
-- **Stress & Speed**: Time pressure mirrors the show's tension
-- **Replayability**: Random action selection and difficulty modes extend gameplay
+I chose a Bop It style gameplay because it fits the retro vibe of the project and brings a bit of 90s nostalgia that connects naturally with the Squid Game atmosphere. The different inputs like rotating, tapping, and shaking make the interaction more physical and fun, while the time pressure keeps the same kind of tension you feel in the show. The random actions and difficulty levels also make the game more replayable and keep players excited each time they try again.
 
 ---
 
 ## 🏗️ Enclosure Design
+### 6 Surface
+<img width="600" height="609" alt="image" src="https://github.com/user-attachments/assets/ad96cfb7-47c5-4912-8731-454c7d0fb7fb" />
+### Fushion Model
+<img width="600" height="540" alt="Screenshot 2025-12-01 at 1 17 47 PM" src="https://github.com/user-attachments/assets/c7696111-309b-4f82-84c6-58c7f98963dd" />
 
 ### Design Philosophy
 The enclosure balances **portability**, **accessibility**, and **thematic consistency** with Squid Game's industrial, utilitarian aesthetic.
@@ -65,12 +46,11 @@ The enclosure balances **portability**, **accessibility**, and **thematic consis
 ### Enclosure Features
 
 #### 1. **Form Factor**
-- **Dimensions**: Compact handheld size (~120mm x 80mm x 40mm)
-- **Material**: 3D printed PLA (NOT yellow per constraints)
+- **Dimensions**: Compact handheld size 15*15 *15 cube
+- **Material**: 3D printed PLA  with arclic paintt
 - **Color Choice**: 
-  - **Primary**: Black or dark gray (industrial/ominous)
-  - **Accent**: Pink/magenta insets for buttons/LEDs (Squid Game theme)
-  - **Alternative**: White with pink accents (guard uniform colors)
+  - **Primary**: suqid game pink (Squid Game theme)
+  - **Alternative**: White 
 
 #### 2. **Accessibility Requirements**
 ✅ **Type-C Port Slot**: 
