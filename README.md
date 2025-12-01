@@ -8,8 +8,8 @@ The idea of this ia a 90s-style handheld electronic game inspired by Netflix's *
 I chose a Bop It style gameplay because it fits the retro vibe of the project and brings a bit of 90s nostalgia that connects naturally with the Squid Game atmosphere. The different inputs like rotating, tapping, and shaking make the interaction more physical and fun, while the time pressure keeps the same kind of tension you feel in the show. The random actions and difficulty levels also make the game more replayable and keep players excited each time they try again.
 
 
-
-<img src="https://github.com/user-attachments/assets/dd8bc7f9-0776-4c0d-b54c-cfc2ffb05001" width="500" alt="squid game">
+<img src="https://github.com/user-attachments/assets/dd8bc7f9-0776-4c0d-b54c-cfc2ffb05001" height="570" alt="squid game">
+<img width="450" height="716" alt="Screenshot 2025-12-01 at 2 03 03 PM" src="https://github.com/user-attachments/assets/71585275-8acf-437d-be7d-02edc163afc1" />
 
 Inspired by the deadly children's games in *Squid Game*, each level requires players to perform one of four physical actions:
 - **ROTATE** - Spin the ‘circle’ （rotary encoder）
